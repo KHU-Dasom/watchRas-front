@@ -3,17 +3,16 @@ import {Text, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableView} from './TouchableView';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {create} from 'react-test-renderer';
 
-export const TableElement = ({
-  vedioTitle,
-  createDate,
-}) => {
+export const TableElement = ({vedioTitle, createDate}) => {
   const navigation = useNavigation();
 
   const goVideoSelect = useCallback(
     () =>
       navigation.navigate('Detail', {
         vedioTitle: vedioTitle,
+        createDate: createDate,
       }),
     [],
   );
@@ -22,7 +21,9 @@ export const TableElement = ({
     <>
       <TouchableView style={styles.tochableOuterView} onPress={goVideoSelect}>
         <View style={styles.rowViewStyle}>
-          <Text numberOfLines={1} style={styles.titleTextStyle}>{vedioTitle}</Text>
+          <Text numberOfLines={1} style={styles.titleTextStyle}>
+            {vedioTitle}
+          </Text>
           <Icon
             style={{right: -7}}
             name="chevron-right"
