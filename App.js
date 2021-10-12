@@ -1,8 +1,20 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {enableScreens} from 'react-native-screens';
+import {NavigationContainer} from '@react-navigation/native';
+import Navigator from './src/screens/Navigator';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
+enableScreens();
 
 const App = () => {
-  return <SafeAreaView style={backgroundStyle}></SafeAreaView>;
+
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Navigator/>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
 };
 
 export default App;

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "watchRas.app"
-               BlueprintName = "watchRas"
-               ReferencedContainer = "container:watchRas.xcodeproj">
+               BuildableName = "watchras.app"
+               BlueprintName = "watchras"
+               ReferencedContainer = "container:watchras.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "watchRasTests.xctest"
-               BlueprintName = "watchRasTests"
-               ReferencedContainer = "container:watchRas.xcodeproj">
+               BuildableName = "watchrasTests.xctest"
+               BlueprintName = "watchrasTests"
+               ReferencedContainer = "container:watchras.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "watchRas.app"
-            BlueprintName = "watchRas"
-            ReferencedContainer = "container:watchRas.xcodeproj">
+            BuildableName = "watchras.app"
+            BlueprintName = "watchras"
+            ReferencedContainer = "container:watchras.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "watchRas.app"
-            BlueprintName = "watchRas"
-            ReferencedContainer = "container:watchRas.xcodeproj">
+            BuildableName = "watchras.app"
+            BlueprintName = "watchras"
+            ReferencedContainer = "container:watchras.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
