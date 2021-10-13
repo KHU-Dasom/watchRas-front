@@ -13,9 +13,11 @@ export const MovieElement = ({vedioTitle, createDate, videoUrl}) => {
           <Text style={styles.titleText}>{vedioTitle}</Text>
           <Text>생성일 : {createDate}</Text>
         </View>
+        <View style={{margin: 20, backgroundColor: '#dbdbdb', height: 1}}/>
         <View style={styles.movieArea}>
           <Video
             source={{uri: videoUrl}} // Can be a URL or a local file.
+            resizeMode={"contain"}
             /* ref={ref => {
             this.player = ref;
           }} // Store reference
@@ -32,23 +34,25 @@ export const MovieElement = ({vedioTitle, createDate, videoUrl}) => {
 
 const styles = StyleSheet.create({
   backgroundVideo: {
-    height: 240,
-    width: '80%',
+    height: 160,
+    width: '90%',
+    // borderWidth: 1
   },
   infoArea: {
     display: 'flex',
     flexDirection: 'column',
+    marginTop: 10,
     marginLeft: 15,
   },
 
   movieArea: {
-    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   // text 지정
   titleText: {
-    fontSize: 17,
+    fontSize: 20,
+    color: 'black'
   },
 });
