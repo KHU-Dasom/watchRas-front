@@ -14,6 +14,7 @@ export type NavigationHeaderProps = {
 
 export const NavigationHeader: FC<NavigationHeaderProps> = ({
   title,
+  Right,
   titleStyle,
 }) => {
   const navigation = useNavigation();
@@ -56,14 +57,15 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
             justifyContent: 'center',
             width: 40,
           }}
-          // onPress={SaerchPossibleAP}
+          onPress={() => {null}}
         >
           <Image
-            source={require('../assets/images/magnify.png')}
+            source={require('../assets/images/refresh.png')}
             style={{
               width: 20,
               height: 20,
               resizeMode: 'contain',
+              tintColor: 'white'
             }}
           />
         </TouchableView>
