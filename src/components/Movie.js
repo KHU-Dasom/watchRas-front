@@ -1,58 +1,193 @@
-import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, {useState, useEffect} from 'react';
+import {
+  StyleSheet,
+  Dimensions,
+  View,
+  TouchableOpacity,
+  StatusBar,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Video from 'react-native-video';
+import Orientation from 'react-native-orientation-locker';
+import {ProgressBar} from './ProgressBar';
+import {PlayerControls} from './PlayerControls';
 
-export const MovieElement = ({vedioTitle, createDate, videoUrl}) => {
-  const navigation = useNavigation();
+import {FullscreenClose, FullscreenOpen} from '../assets/icons';
+
+export const MovieElement = ({title}) => {
+  const videoRef = React.createRef();
+
+  // 나중에 서버에서 비디오 있는 주소 및  title 정해서 주소 만들어주기
+  const videoPath = '../data/Contents/' + title;
+  const [state, setState] = useState({
+    fullscreen: false,
+    play: false,
+    currentTime: 0,
+    duration: 0,
+    showControls: true,
+  });
+
+  useEffect(() => {
+    Orientation.addOrientationListener(handleOrientation);
+
+    return () => {
+      Orientation.removeOrientationListener(handleOrientation);
+    };
+  }, []);
 
   return (
-    <>
-      <View>
-        <View style={styles.infoArea}>
-          <Text style={styles.titleText}>{vedioTitle}</Text>
-          <Text>생성일 : {createDate}</Text>
-        </View>
-        <View style={{margin: 20, backgroundColor: '#dbdbdb', height: 1}}/>
-        <View style={styles.movieArea}>
+    <View style={state.fullscreen ? styles.containerFull : styles.container}>
+      <TouchableWithoutFeedback onPress={showControls}>
+        <View>
           <Video
-            source={{uri: videoUrl}} // Can be a URL or a local file.
-            resizeMode={"contain"}
-            /* ref={ref => {
-            this.player = ref;
-          }} // Store reference
-          onBuffer={this.onBuffer} // Callback when remote video is buffering
-          onError={this.videoError} // Callback when video cannot be loaded */
-            controls={true}
-            style={styles.backgroundVideo}
+            ref={videoRef}
+            source={{
+              uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4`,
+            }}
+            style={state.fullscreen ? styles.fullscreenVideo : styles.video}
+            controls={false}
+            resizeMode={'contain'}
+            onLoad={onLoadEnd}
+            onProgress={onProgress}
+            onEnd={onEnd}
+            paused={!state.play}
           />
+          {state.showControls && (
+            <View style={styles.controlOverlay}>
+              <TouchableOpacity
+                onPress={handleFullscreen}
+                hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+                style={styles.fullscreenButton}>
+                {state.fullscreen ? <FullscreenClose /> : <FullscreenOpen />}
+              </TouchableOpacity>
+              <PlayerControls
+                onPlay={handlePlayPause}
+                onPause={handlePlayPause}
+                playing={state.play}
+                showPreviousAndNext={false}
+                showSkip={true}
+                skipBackwards={skipBackward}
+                skipForwards={skipForward}
+              />
+              <ProgressBar
+                currentTime={state.currentTime}
+                duration={state.duration > 0 ? state.duration : 0}
+                onSlideStart={handlePlayPause}
+                onSlideComplete={handlePlayPause}
+                onSlideCapture={onSeek}
+              />
+            </View>
+          )}
         </View>
-      </View>
-    </>
+      </TouchableWithoutFeedback>
+    </View>
   );
+
+  function handleOrientation(orientation) {
+    orientation === 'LANDSCAPE-LEFT' || orientation === 'LANDSCAPE-RIGHT'
+      ? (setState(s => ({...s, fullscreen: true})), StatusBar.setHidden(true))
+      : (setState(s => ({...s, fullscreen: false})),
+        StatusBar.setHidden(false));
+  }
+
+  function handleFullscreen() {
+    state.fullscreen
+      ? Orientation.unlockAllOrientations()
+      : Orientation.lockToLandscapeLeft();
+  }
+
+  function handlePlayPause() {
+    // If playing, pause and show controls immediately.
+    if (state.play) {
+      setState({...state, play: false, showControls: true});
+      return;
+    }
+
+    setState({...state, play: true});
+    setTimeout(() => setState(s => ({...s, showControls: false})), 2000);
+  }
+
+  function skipBackward() {
+    videoRef.current.seek(state.currentTime - 15);
+    setState({...state, currentTime: state.currentTime - 15});
+  }
+
+  function skipForward() {
+    videoRef.current.seek(state.currentTime + 15);
+    setState({...state, currentTime: state.currentTime + 15});
+  }
+
+  function onSeek(data) {
+    videoRef.current.seek(data.seekTime);
+    setState({...state, currentTime: data.seekTime});
+  }
+
+  function onLoadEnd(data) {
+    setState(s => ({
+      ...s,
+      duration: data.duration,
+      currentTime: data.currentTime,
+    }));
+  }
+
+  function onProgress(data) {
+    setState(s => ({
+      ...s,
+      currentTime: data.currentTime,
+    }));
+  }
+
+  function onEnd() {
+    setState({...state, play: false});
+    videoRef.current.seek(0);
+  }
+
+  function showControls() {
+    state.showControls
+      ? setState({...state, showControls: false})
+      : setState({...state, showControls: true});
+  }
 };
 
 const styles = StyleSheet.create({
-  backgroundVideo: {
-    height: 160,
-    width: '90%',
-    // borderWidth: 1
+  container: {
+    flex: 1,
+    backgroundColor: '#ebebeb',
   },
-  infoArea: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: 10,
-    marginLeft: 15,
+  containerFull: {
+    flex: 1,
+    position: 'absolute',
   },
-
-  movieArea: {
-    justifyContent: 'center',
+  video: {
+    height: Dimensions.get('window').width * (9 / 16),
+    width: Dimensions.get('window').width,
+    backgroundColor: 'black',
+  },
+  fullscreenVideo: {
+    height: Dimensions.get('window').width,
+    width: Dimensions.get('window').height,
+    backgroundColor: 'black',
+  },
+  text: {
+    marginTop: 30,
+    marginHorizontal: 20,
+    fontSize: 15,
+    textAlign: 'justify',
+  },
+  fullscreenButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
     alignItems: 'center',
+    paddingRight: 10,
   },
-
-  // text 지정
-  titleText: {
-    fontSize: 20,
-    color: 'black'
+  controlOverlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#000000c4',
+    justifyContent: 'space-between',
   },
 });

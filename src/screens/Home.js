@@ -17,34 +17,34 @@ import {TouchableView} from '../components/TouchableView';
 import {BallIndicator} from 'react-native-indicators';
 
 const vedioData = [
-  {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'vedio'},
+  {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'video'},
   {
     title: 'love_is_an_open_door.mp4',
     createDate: '2019-07-13',
-    fileType: 'vedio',
+    fileType: 'video',
   },
-  {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'vedio'},
-  {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'vedio'},
+  {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'video'},
+  {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'video'},
   {
     title: 'love_is_an_open_door.mp4',
     createDate: '2019-07-13',
-    fileType: 'vedio',
+    fileType: 'video',
   },
-  {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'vedio'},
-  {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'vedio'},
+  {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'video'},
+  {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'video'},
   {
     title: 'love_is_an_open_door.mp4',
     createDate: '2019-07-13',
-    fileType: 'vedio',
+    fileType: 'video',
   },
-  {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'vedio'},
-  {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'vedio'},
+  {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'video'},
+  {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'video'},
   {
     title: 'love_is_an_open_door.mp4',
     createDate: '2019-07-13',
-    fileType: 'vedio',
+    fileType: 'video',
   },
-  {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'vedio'},
+  {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'video'},
 ];
 
 const pictureData = [
