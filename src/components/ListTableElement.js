@@ -7,19 +7,23 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 export const TableElement = ({title, createDate, fileType}) => {
   const navigation = useNavigation();
 
-  const goVideoSelect = useCallback(
+  const goDetail = useCallback(
     () =>
       navigation.navigate('Detail', {
         title: title,
         createDate: createDate,
         fileType: fileType,
       }),
-    [],
+    [title, createDate, fileType],
   );
 
   return (
     <>
-      <TouchableView style={styles.tochableOuterView} onPress={goVideoSelect}>
+      <TouchableView
+        style={styles.tochableOuterView}
+        onPress={() => {
+          goDetail();
+        }}>
         <View style={styles.rowViewStyle}>
           <Text numberOfLines={1} style={styles.titleTextStyle}>
             {title}
