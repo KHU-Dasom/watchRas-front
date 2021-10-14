@@ -4,8 +4,8 @@ import {
   Dimensions,
   View,
   TouchableOpacity,
-  StatusBar,
   TouchableWithoutFeedback,
+  StatusBar,
 } from 'react-native';
 import Video from 'react-native-video';
 import Orientation from 'react-native-orientation-locker';
@@ -28,15 +28,14 @@ export const MovieElement = ({title}) => {
   });
 
   useEffect(() => {
-    Orientation.addOrientationListener(handleOrientation);
-
     return () => {
       Orientation.removeOrientationListener(handleOrientation);
     };
   }, []);
-
   return (
-    <View style={state.fullscreen ? styles.containerFull : styles.container}>
+    <View
+      style={state.fullscreen ? styles.fullScreenConatiner : styles.container}>
+      {state.fullscreen ? <StatusBar hidden /> : null}
       <TouchableWithoutFeedback onPress={showControls}>
         <View>
           <Video
@@ -91,9 +90,13 @@ export const MovieElement = ({title}) => {
   }
 
   function handleFullscreen() {
-    state.fullscreen
-      ? Orientation.unlockAllOrientations()
-      : Orientation.lockToLandscapeLeft();
+    if (state.fullscreen) {
+      Orientation.unlockAllOrientations();
+      setState(s => ({...s, fullscreen: false}));
+    } else {
+      Orientation.lockToLandscapeLeft();
+      setState(s => ({...s, fullscreen: true}));
+    }
   }
 
   function handlePlayPause() {
@@ -152,10 +155,9 @@ export const MovieElement = ({title}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ebebeb',
+    alignItems: 'center',
   },
-  containerFull: {
-    flex: 1,
+  fullScreenConatiner: {
     position: 'absolute',
   },
   video: {

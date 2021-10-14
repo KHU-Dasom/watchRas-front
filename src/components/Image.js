@@ -1,20 +1,87 @@
-import React from 'react';
-import {Text, StyleSheet, View, Image} from 'react-native';
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Modal,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import ImageViewer from 'react-native-image-zoom-viewer';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const ImageElement = ({title}) => {
-  const navigation = useNavigation();
-  // 나중에 서버에서 비디오 있는 주소 및  title 정해서 주소 만들어주기
-  const imagePath = '../data/Contents/' + title;
+  const [isLoading, setIsLoading] = useState(true);
+  const [showImageViewer, setShowImageViewer] = useState(false);
+  const images = [
+    {
+      props: {
+        source: require('../data/Table/figure.png'),
+      },
+    },
+  ];
+
+  const toggleImageViewer = () => {
+    setShowImageViewer(showImageViewer => !showImageViewer);
+  };
+
   return (
-    <>
-      <View>
-        <Image
-          style={{width: '100%'}}
-          resizeMode="contain"
-          source={require('../data/Table/figure.png')}
+    <TouchableOpacity
+      onPress={toggleImageViewer}
+      style={{alignItems: 'center'}}>
+      {isLoading && (
+        <View style={styles.loadingOverlay}>
+          <ActivityIndicator size="large" />
+        </View>
+      )}
+
+      <Image
+        source={require('../data/Table/figure.png')}
+        style={{width: '100%'}}
+        resizeMode="contain"
+        onLoad={() => setIsLoading(false)}
+      />
+
+      <Modal
+        visible={showImageViewer}
+        transparent
+        onRequestClose={toggleImageViewer}
+        animationType="slide">
+        <ImageViewer
+          renderHeader={() => (
+            <View style={styles.ImageViewerHeader}>
+              <TouchableOpacity
+                style={styles.closeArea}
+                onPress={() => {
+                  toggleImageViewer();
+                }}>
+                <Icon name="close" size={20} color="#FFFFFF" />
+              </TouchableOpacity>
+            </View>
+          )}
+          imageUrls={images}
+          onCancel={toggleImageViewer}
+          enableSwipeDown
+          enableImageZoom
+          renderIndicator={() => null}
         />
-      </View>
-    </>
+      </Modal>
+    </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+  },
+  ImageViewerHeader: {
+    alignSelf: 'flex-end',
+  },
+  closeArea: {
+    margin: 10,
+  },
+});
