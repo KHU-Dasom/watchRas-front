@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = '';
+const URL = '192.168.2.1:8091/api/directory';
 
 const setFileType = (list, fileType) => {
   list = list.map(item => {
