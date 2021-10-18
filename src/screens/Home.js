@@ -110,14 +110,16 @@ const Home = () => {
   const [info, setInfo] = useState();
   const [isLoading, toggleLoading] = useState(false);
   const [refresh, toggleRefresh] = useState(false);
+  const [profileImage, setProfileImage] = useState();
 
   useEffect(() => {
     toggleLoading(true);
     Promise.all([
-      ((getFileList('Video', setVedioData, 'vedio'),
-      getFileList('Picture', setPictureData, 'picture')),
+      getFileList('Video', setVedioData, 'vedio'),
+      getFileList('Picture', setPictureData, 'picture'),
       // getFileInfo('Table', setTitle),
-      getFileInfo('Information/Keyword.txt', setInfo)),
+      getFileInfo('Information/Keyword.txt', setInfo),
+      getFileList('Cover', setProfileImage, 'picture'),
     ]).then(() => toggleLoading(false));
   }, [refresh]);
 
@@ -140,6 +142,7 @@ const Home = () => {
       </TouchableView>
       <Selector selector={selector} setSelector={setSelector} />
       <ListTable
+        profileImage={profileImage}
         title={title}
         info={info}
         vedioData={vedioData}

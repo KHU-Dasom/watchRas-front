@@ -2,7 +2,14 @@ import React from 'react';
 import {Text, StyleSheet, View, FlatList, Image} from 'react-native';
 import {TableElement} from './ListTableElement';
 
-export const ListTable = ({title, info, vedioData, pictureData, selector}) => {
+export const ListTable = ({
+  title,
+  info,
+  vedioData,
+  pictureData,
+  selector,
+  profileImage,
+}) => {
   return (
     <FlatList
       ListHeaderComponent={
@@ -14,7 +21,7 @@ export const ListTable = ({title, info, vedioData, pictureData, selector}) => {
             <Image
               style={{width: '100%'}}
               resizeMode="contain"
-              source={require('../data/Table/figure.png')}
+              source={require(`http://192.168.2.1:8090/Cover/${profileImage}`)}
             />
           </View>
           <View style={{flex: 1}}>
