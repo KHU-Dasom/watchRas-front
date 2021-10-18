@@ -118,16 +118,16 @@ const Home = () => {
       getFileList('Video', setVedioData, 'vedio'),
       getFileList('Picture', setPictureData, 'picture'),
       // getFileInfo('Table', setTitle),
-      getFileInfo('Information/Keyword.txt', setInfo),
+      getFileInfo('Information', 'Keyword.txt', setInfo),
       getFileList('Cover', setProfileImage, 'picture'),
     ]).then(() => toggleLoading(false));
   }, [refresh]);
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      {isLoading && (
+      {/* {isLoading && (
         <BallIndicator color="black" style={styles.indicatorStyle} />
-      )}
+      )} */}
       <StatusBar barStyle={'light-content'} />
       <NavigationHeader title={'HOME'} />
       <TouchableView

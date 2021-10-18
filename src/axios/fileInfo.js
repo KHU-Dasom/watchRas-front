@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'http://192.168.2.1:8090/api/directory';
+const URL = 'http://192.168.2.1:8090';
 
 export const getFileInfo = async (directory = '', fileName, setState) => {
   await axios({

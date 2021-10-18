@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const URL = 'http://192.168.2.1:8090/api/directory';
+const URL = 'http://192.168.2.1:8091/api/directory';
 
 const setFileType = (list, fileType) => {
   list = list.map(item => {
     item.fileType = fileType;
   });
+
+  return list;
 };
 
 export const getFileList = async (directory = '', setState, fileType) => {
@@ -13,7 +15,6 @@ export const getFileList = async (directory = '', setState, fileType) => {
     method: 'get',
     url: `${URL}/${directory}`,
   }).then(res => {
-    console.log(setFileType(res.data));
-    setState(setFileType(res.data, fileType));
+    setState(setFileType(res.data.files, fileType));
   });
 };

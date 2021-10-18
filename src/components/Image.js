@@ -15,13 +15,11 @@ export const ImageElement = ({title}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showImageViewer, setShowImageViewer] = useState(false);
   const imageUrl = 'http://192.168.2.1:8090/Picture/' + title;
-  // const images = [
-  //   {
-  //     props: {
-  //       source: require(imageUrl),
-  //     },
-  //   },
-  // ];
+  const images = [
+    {
+      url: imageUrl,
+    },
+  ];
 
   const toggleImageViewer = () => {
     setShowImageViewer(showImageViewer => !showImageViewer);
@@ -37,14 +35,14 @@ export const ImageElement = ({title}) => {
         </View>
       )}
 
-      {/* <Image
-        source={require(imageUrl)}
+      <Image
+        source={{uri: imageUrl}}
         style={{width: '100%'}}
         resizeMode="contain"
         onLoad={() => setIsLoading(false)}
-      /> */}
+      />
 
-      {/* <Modal
+      <Modal
         visible={showImageViewer}
         transparent
         onRequestClose={toggleImageViewer}
@@ -67,7 +65,7 @@ export const ImageElement = ({title}) => {
           enableImageZoom
           renderIndicator={() => null}
         />
-      </Modal> */}
+      </Modal>
     </TouchableOpacity>
   );
 };

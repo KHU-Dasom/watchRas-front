@@ -21,7 +21,7 @@ export const ListTable = ({
             <Image
               style={{width: '100%'}}
               resizeMode="contain"
-              source={require(`http://192.168.2.1:8090/Cover/${profileImage}`)}
+              source={{uri: `http://192.168.2.1:8090/Cover/${profileImage}`}}
             />
           </View>
           <View style={{flex: 1}}>
