@@ -14,10 +14,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 export const ImageElement = ({title}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showImageViewer, setShowImageViewer] = useState(false);
+  const imageUrl = 'http://192.168.2.1:8090/Picture/' + title;
   const images = [
     {
       props: {
-        source: require('../data/Table/figure.png'),
+        source: require(imageUrl),
       },
     },
   ];
@@ -37,7 +38,7 @@ export const ImageElement = ({title}) => {
       )}
 
       <Image
-        source={require('../data/Table/figure.png')}
+        source={require(imageUrl)}
         style={{width: '100%'}}
         resizeMode="contain"
         onLoad={() => setIsLoading(false)}

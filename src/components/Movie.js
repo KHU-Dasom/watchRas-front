@@ -18,7 +18,7 @@ export const MovieElement = ({title}) => {
   const videoRef = React.createRef();
 
   // 나중에 서버에서 비디오 있는 주소 및  title 정해서 주소 만들어주기
-  const videoPath = '../data/Contents/' + title;
+  const videoPath = 'http://192.168.2.1:8090/Video/' + title;
   const [state, setState] = useState({
     fullscreen: false,
     play: false,
@@ -41,7 +41,7 @@ export const MovieElement = ({title}) => {
           <Video
             ref={videoRef}
             source={{
-              uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4`,
+              uri: videoPath,
             }}
             style={state.fullscreen ? styles.fullscreenVideo : styles.video}
             controls={false}
