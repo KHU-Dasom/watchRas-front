@@ -6,15 +6,17 @@ import {
   Modal,
   TouchableOpacity,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {root} from '../axios/config';
 
 export const ImageElement = ({title}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showImageViewer, setShowImageViewer] = useState(false);
-  const imageUrl = 'http://192.168.2.1:8090/Picture/' + title;
+  const imageUrl = `${root}:8090/Picture/` + title;
+  console.log(imageUrl);
   const images = [
     {
       url: imageUrl,
@@ -37,7 +39,10 @@ export const ImageElement = ({title}) => {
 
       <Image
         source={{uri: imageUrl}}
-        style={{width: '100%'}}
+        style={{
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').width,
+        }}
         resizeMode="contain"
         onLoad={() => setIsLoading(false)}
       />

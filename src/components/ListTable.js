@@ -1,6 +1,14 @@
 import React from 'react';
-import {Text, StyleSheet, View, FlatList, Image} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  FlatList,
+  Image,
+  Dimensions,
+} from 'react-native';
 import {TableElement} from './ListTableElement';
+import {root} from '../axios/config';
 
 export const ListTable = ({
   title,
@@ -18,14 +26,24 @@ export const ListTable = ({
             flexDirection: 'row',
           }}>
           <View style={styles.figureOuterViewStyle}>
-            <Image
-              style={{width: '100%'}}
-              resizeMode="contain"
-              source={{uri: `http://192.168.2.1:8090/Cover/${profileImage}`}}
-            />
+            {profileImage == undefined ? null : (
+              <Image
+                style={{
+                  width: Dimensions.get('window').width * (1 / 2),
+                  height: Dimensions.get('window').width * (9 / 16),
+                }}
+                resizeMode="contain"
+                source={{
+                  uri: `${root}:8090/Cover/${profileImage[0].title}`,
+                }}
+              />
+            )}
           </View>
           <View style={{flex: 1}}>
-            <Text style={styles.figureTitleStyle}>{title}</Text>
+            {/* <Text style={styles.figureTitleStyle}>{title}</Text> */}
+            {info == undefined ? null : (
+              <Text style={styles.figureTitleStyle}>{info.split('\n')[0]}</Text>
+            )}
             <Text style={styles.figureTextStyle}>{info}</Text>
           </View>
         </View>
@@ -48,6 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    height: Dimensions.get('window').width * (9 / 16),
   },
   figureTitleStyle: {
     flex: 1,

@@ -2,15 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {NavigationHeader} from '../components/NavigationHeader';
 import {Selector} from '../components/Selector';
 import {ListTable} from '../components/ListTable';
-import {
-  SafeAreaView,
-  FlatList,
-  StatusBar,
-  View,
-  Text,
-  StyleSheet,
-  Image,
-} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, Image} from 'react-native';
 import {getFileList} from '../axios/fileList';
 import {getFileInfo} from '../axios/fileInfo';
 import {TouchableView} from '../components/TouchableView';
@@ -115,19 +107,22 @@ const Home = () => {
   useEffect(() => {
     toggleLoading(true);
     Promise.all([
-      getFileList('Video', setVedioData, 'vedio'),
+      getFileList('Video', setVedioData, 'video'),
       getFileList('Picture', setPictureData, 'picture'),
       // getFileInfo('Table', setTitle),
       getFileInfo('Information', 'Keyword.txt', setInfo),
       getFileList('Cover', setProfileImage, 'picture'),
     ]).then(() => toggleLoading(false));
   }, [refresh]);
+  console.log(profileImage);
+  console.log(vedioData);
+  console.log(pictureData);
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      {/* {isLoading && (
+      {isLoading && (
         <BallIndicator color="black" style={styles.indicatorStyle} />
-      )} */}
+      )}
       <StatusBar barStyle={'light-content'} />
       <NavigationHeader title={'HOME'} />
       <TouchableView

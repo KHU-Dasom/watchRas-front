@@ -18,10 +18,10 @@ const Detail = () => {
     <>
       <NavigationHeader title={'Detail'} />
 
-      <View style={styles.infoArea}>
+      {/* <View style={styles.infoArea}>
         <Text style={styles.titleText}>{title}</Text>
         <Text>생성일 : {createDate}</Text>
-      </View>
+      </View> */}
       <View style={{margin: 10, backgroundColor: '#dbdbdb', height: 1}} />
       {fileType === 'video' ? (
         <MovieElement title={title} />

@@ -11,6 +11,7 @@ import Video from 'react-native-video';
 import Orientation from 'react-native-orientation-locker';
 import {ProgressBar} from './ProgressBar';
 import {PlayerControls} from './PlayerControls';
+import {root} from '../axios/config';
 
 import {FullscreenClose, FullscreenOpen} from '../assets/icons';
 
@@ -18,7 +19,8 @@ export const MovieElement = ({title}) => {
   const videoRef = React.createRef();
 
   // 나중에 서버에서 비디오 있는 주소 및  title 정해서 주소 만들어주기
-  const videoPath = 'http://192.168.2.1:8090/Video/' + title;
+  const videoPath = `${root}:8090/Video/` + title;
+
   const [state, setState] = useState({
     fullscreen: false,
     play: false,
@@ -26,7 +28,6 @@ export const MovieElement = ({title}) => {
     duration: 0,
     showControls: true,
   });
-
   useEffect(() => {
     return () => {
       Orientation.removeOrientationListener(handleOrientation);

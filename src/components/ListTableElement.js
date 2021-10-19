@@ -35,13 +35,10 @@ export const TableElement = ({title, createDate, fileType}) => {
             color="#8e8d92"
           />
         </View>
-        <View style={styles.contentViewStyle}>
+        {/* <View style={styles.contentViewStyle}>
           <Text style={styles.subTextStyle}>생성일</Text>
-          <Text style={styles.subContentTextStyle}>
-            {/* TODO 생성일을 sameple에서는 string으로 가정한다. */}
-            {createDate}
-          </Text>
-        </View>
+          <Text style={styles.subContentTextStyle}>{createDate}</Text>
+        </View> */}
       </TouchableView>
       <View style={{alignItems: 'center', backgroundColor: 'white'}}>
         <View
