@@ -7,92 +7,7 @@ import {getFileList} from '../axios/fileList';
 import {getFileInfo} from '../axios/fileInfo';
 import {TouchableView} from '../components/TouchableView';
 import {BallIndicator} from 'react-native-indicators';
-
-// const vedioData = [
-//   {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'video'},
-//   {
-//     title: 'love_is_an_open_door.mp4',
-//     createDate: '2019-07-13',
-//     fileType: 'video',
-//   },
-//   {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'video'},
-//   {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'video'},
-//   {
-//     title: 'love_is_an_open_door.mp4',
-//     createDate: '2019-07-13',
-//     fileType: 'video',
-//   },
-//   {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'video'},
-//   {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'video'},
-//   {
-//     title: 'love_is_an_open_door.mp4',
-//     createDate: '2019-07-13',
-//     fileType: 'video',
-//   },
-//   {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'video'},
-//   {title: 'let_it_go.mp4', createDate: '2019-04-06', fileType: 'video'},
-//   {
-//     title: 'love_is_an_open_door.mp4',
-//     createDate: '2019-07-13',
-//     fileType: 'video',
-//   },
-//   {title: 'unknown.mp4', createDate: '2019-09-02', fileType: 'video'},
-// ];
-
-// const pictureData = [
-//   {title: 'cat.png', createDate: '2019-04-06', fileType: 'picture'},
-//   {
-//     title: 'dog.png',
-//     createDate: '2019-07-13',
-//     fileType: 'picture',
-//   },
-//   {title: 'rabbit.png', createDate: '2019-09-02', fileType: 'picture'},
-//   {title: 'cat.png', createDate: '2019-04-06', fileType: 'picture'},
-//   {
-//     title: 'dog.png',
-//     createDate: '2019-07-13',
-//     fileType: 'picture',
-//   },
-//   {title: 'rabbit.png', createDate: '2019-09-02', fileType: 'picture'},
-//   {title: 'cat.png', createDate: '2019-04-06', fileType: 'picture'},
-//   {
-//     title: 'dog.png',
-//     createDate: '2019-07-13',
-//     fileType: 'picture',
-//   },
-//   {title: 'rabbit.png', createDate: '2019-09-02', fileType: 'picture'},
-//   {title: 'cat.png', createDate: '2019-04-06', fileType: 'picture'},
-//   {
-//     title: 'dog.png',
-//     createDate: '2019-07-13',
-//     fileType: 'picture',
-//   },
-//   {title: 'rabbit.png', createDate: '2019-09-02', fileType: 'picture'},
-//   {title: 'cat.png', createDate: '2019-04-06', fileType: 'picture'},
-//   {
-//     title: 'dog.png',
-//     createDate: '2019-07-13',
-//     fileType: 'picture',
-//   },
-//   {title: 'rabbit.png', createDate: '2019-09-02', fileType: 'picture'},
-//   {title: 'cat.png', createDate: '2019-04-06', fileType: 'picture'},
-//   {
-//     title: 'dog.png',
-//     createDate: '2019-07-13',
-//     fileType: 'picture',
-//   },
-//   {title: 'rabbit.png', createDate: '2019-09-02', fileType: 'picture'},
-// ];
-
-// const title = 'Anna princess';
-// const info = `Anna is a lovely princess of Winter Kingdom.
-// She is sister of Elsa.
-
-// She song a 'love is an open door' with prince Hans.
-// But, Hans prince actually is a villain.
-// He hurt her mind and tried to harm Else.
-
-// In the end, He should take his responsibility for what he has done.`;
+import {connectWifi, disconnectWifi} from '../utils/WifiManger';
 
 const Home = () => {
   const [selector, setSelector] = useState('Contents'); //Contents or pictures will be selected.
@@ -106,6 +21,8 @@ const Home = () => {
 
   useEffect(() => {
     toggleLoading(true);
+    connectWifi();
+
     Promise.all([
       getFileList('Video', setVedioData, 'video'),
       getFileList('Picture', setPictureData, 'picture'),
@@ -113,6 +30,10 @@ const Home = () => {
       getFileInfo('Information', 'Keyword.txt', setInfo),
       getFileList('Cover', setProfileImage, 'picture'),
     ]).then(() => toggleLoading(false));
+
+    return () => {
+      disconnectWifi();
+    };
   }, [refresh]);
   console.log(profileImage);
   console.log(vedioData);
