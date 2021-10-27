@@ -7,11 +7,10 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 enableScreens();
 
 const App = () => {
-
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Navigator/>
+        <Navigator />
       </NavigationContainer>
     </SafeAreaProvider>
   );

@@ -23,7 +23,11 @@ export const connectWifi = async () => {
   );
   if (granted === PermissionsAndroid.RESULTS.GRANTED) {
     // You can now use react-native-wifi-reborn
-    WifiManager.connectToProtectedSSID(wifiName, wifiPassword, false).then(
+    await WifiManager.connectToProtectedSSID(
+      wifiName,
+      wifiPassword,
+      false,
+    ).then(
       () => {
         console.log('Connected successfully!');
       },

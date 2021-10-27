@@ -24,13 +24,17 @@ const Home = () => {
     toggleLoading(true);
     connectWifi();
 
-    Promise.all([
-      getFileListAuto('Contents', setVedioData, 'video'),
-      getFileListAuto('Contents', setPictureData, 'picture'),
-      // getFileInfo('Table', setTitle),
-      getFileInfo('Keyword', 'Keyword.txt', setInfo),
-      getFileList('Table', setProfileImage, 'picture'),
-    ]).then(() => toggleLoading(false));
+    try {
+      Promise.all([
+        getFileListAuto('Contents', setVedioData, 'video'),
+        getFileListAuto('Contents', setPictureData, 'picture'),
+        // getFileInfo('Table', setTitle),
+        getFileInfo('Keyword', 'Keyword.txt', setInfo),
+        getFileList('Table', setProfileImage, 'picture'),
+      ]).then(() => toggleLoading(false));
+    } catch (err) {
+      console.log(err);
+    }
 
     return () => {
       disconnectWifi();
@@ -42,9 +46,9 @@ const Home = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      {isLoading && (
+      {/* {isLoading && (
         <BallIndicator color="black" style={styles.indicatorStyle} />
-      )}
+      )} */}
       <StatusBar barStyle={'light-content'} />
       <NavigationHeader title={'HOME'} />
       <TouchableView
