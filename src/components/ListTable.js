@@ -34,7 +34,7 @@ export const ListTable = ({
                 }}
                 resizeMode="contain"
                 source={{
-                  uri: `${root}:8090/Cover/${profileImage[0].title}`,
+                  uri: `${root}:8090/Table/${profileImage[0].title}`,
                 }}
               />
             )}
@@ -49,14 +49,16 @@ export const ListTable = ({
         </View>
       }
       data={selector == 'Contents' ? vedioData : pictureData}
-      renderItem={({item, index}) => (
-        <TableElement
-          title={item.title}
-          createDate={item.createDate}
-          fileType={item.fileType}
-          key={index}
-        />
-      )}
+      renderItem={({item, index}) =>
+        item == null ? null : (
+          <TableElement
+            title={item.title}
+            createDate={item.createDate}
+            fileType={item.fileType}
+            key={index}
+          />
+        )
+      }
     />
   );
 };

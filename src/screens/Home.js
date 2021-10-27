@@ -4,6 +4,7 @@ import {Selector} from '../components/Selector';
 import {ListTable} from '../components/ListTable';
 import {SafeAreaView, StatusBar, StyleSheet, Image} from 'react-native';
 import {getFileList} from '../axios/fileList';
+import {getFileListAuto} from '../axios/fileList';
 import {getFileInfo} from '../axios/fileInfo';
 import {TouchableView} from '../components/TouchableView';
 import {BallIndicator} from 'react-native-indicators';
@@ -24,11 +25,11 @@ const Home = () => {
     connectWifi();
 
     Promise.all([
-      getFileList('Video', setVedioData, 'video'),
-      getFileList('Picture', setPictureData, 'picture'),
+      getFileListAuto('Contents', setVedioData, 'video'),
+      getFileListAuto('Contents', setPictureData, 'picture'),
       // getFileInfo('Table', setTitle),
-      getFileInfo('Information', 'Keyword.txt', setInfo),
-      getFileList('Cover', setProfileImage, 'picture'),
+      getFileInfo('Keyword', 'Keyword.txt', setInfo),
+      getFileList('Table', setProfileImage, 'picture'),
     ]).then(() => toggleLoading(false));
 
     return () => {

@@ -2,6 +2,8 @@ import {PermissionsAndroid} from 'react-native';
 import WifiManager from 'react-native-wifi-reborn';
 import {wifiName, wifiPassword} from '../axios/config';
 
+// setting - https://github.com/JuanSeBestia/react-native-wifi-reborn/pull/216
+
 export const disconnectWifi = async () => {
   WifiManager.isRemoveWifiNetwork(wifiName);
   console.log('disconnect');
