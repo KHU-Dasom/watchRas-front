@@ -15,11 +15,14 @@ import {root} from '../axios/config';
 
 import {FullscreenClose, FullscreenOpen} from '../assets/icons';
 
+/* ==========================
+Movie 
+Detail Screen에서 영상을 보여줍니다.
+========================== */
+
 export const MovieElement = ({title}) => {
   const videoRef = React.createRef();
-
-  // 나중에 서버에서 비디오 있는 주소 및  title 정해서 주소 만들어주기
-  const videoPath = `${root}:8090/METAFIGURE/Contents/` + title;
+  const videoPath = `${root}:8090/METAFIGURE/Contents/` + title; // 추후 폴더 구조 변경시 이미지 파일이 위치한 곳으로 변경해주어야 합니다.
 
   const [state, setState] = useState({
     fullscreen: false,

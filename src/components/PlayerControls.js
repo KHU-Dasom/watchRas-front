@@ -9,6 +9,12 @@ import {
   VideoSkipForward,
 } from '../assets/icons';
 
+/* ==========================
+PlayerControls
+Detail Screen에서 영상을 제어할 수 있는 컨트롤러를 보여줍니다.
+ex) 영상 정지, 앞으로 넘기기
+========================== */
+
 export const PlayerControls = ({
   playing,
   showPreviousAndNext,

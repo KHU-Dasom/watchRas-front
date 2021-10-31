@@ -12,11 +12,17 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {root} from '../axios/config';
 
+/* ==========================
+Image 
+Detail Screen에서 이미지를 보여줍니다.
+========================== */
+
 export const ImageElement = ({title}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showImageViewer, setShowImageViewer] = useState(false);
-  const imageUrl = `${root}:8090/METAFIGURE/Contents/` + title;
-  console.log(imageUrl);
+
+  const imageUrl = `${root}:8090/METAFIGURE/Contents/` + title; // 추후 폴더 구조 변경시 이미지 파일이 위치한 곳으로 변경해주어야 합니다.
+
   const images = [
     {
       url: imageUrl,

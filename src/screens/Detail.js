@@ -6,6 +6,13 @@ import {View, StyleSheet, StatusBar, Text, ScrollView} from 'react-native';
 import {MovieElement} from '../components/Movie';
 import {ImageElement} from '../components/Image';
 
+/* ==========================
+Detail Screen
+이 화면에서 사진 및 영상을 보여줍니다.
+각각 MovieElement 컴포넌트와 ImageElement 컴포넌트에 파일이름(title)을 넘겨주어 해당 컴포넌트에서 이름에 해당하는 것을 가져옵니다.
+fileType이 video인 경우 MovieElement를 보여주고, 그렇지 않다면 ImageElement를 보여줍니다.
+========================== */
+
 const Detail = () => {
   const navigation = useNavigation();
   const route = useRoute();

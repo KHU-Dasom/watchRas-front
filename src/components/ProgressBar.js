@@ -2,6 +2,11 @@ import React from 'react';
 import Slider from '@react-native-community/slider';
 import {View, Text, StyleSheet} from 'react-native';
 
+/* ==========================
+ProgressBar
+Detail Screen에서 영상의 진행 정도를 보여줍니다.
+========================== */
+
 export const ProgressBar = ({
   currentTime,
   duration,
