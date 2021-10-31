@@ -10,6 +10,11 @@ export type TouchableViewProps = TouchableOpacityProps & {
   viewStyle?: StyleProp<ViewStyle>;
 };
 
+/* ==========================
+TouchableView
+클릭을 할 수 있는 View Component입니다.
+========================== */
+
 export const TouchableView: FC<TouchableViewProps> = ({
   children,
   viewStyle,

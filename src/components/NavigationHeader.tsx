@@ -13,6 +13,12 @@ export type NavigationHeaderProps = {
   titleStyle?: StyleProp<TextStyle>;
 };
 
+/* ==========================
+NavigationHeader
+위에 Header를 나타냅니다.
+뒤로가기 버튼과 해당 스크린의 제목이 나타납니다.
+========================== */
+
 export const NavigationHeader: FC<NavigationHeaderProps> = ({
   title,
   Right,

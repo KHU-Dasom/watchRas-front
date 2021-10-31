@@ -10,6 +10,12 @@ import {TouchableView} from '../components/TouchableView';
 import {BallIndicator} from 'react-native-indicators';
 import {connectWifi, disconnectWifi} from '../utils/WifiManger';
 
+/* ==========================
+Home Screen
+이 화면에서 사진 및 영상의 리스트를 나타냅니다.
+ListTable 컴포넌트를 이용하여, 리스트를 나타냅니다.
+========================== */
+
 const Home = () => {
   const [selector, setSelector] = useState('Contents'); //Contents or pictures will be selected.
   const [vedioData, setVedioData] = useState([]);

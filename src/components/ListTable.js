@@ -10,6 +10,12 @@ import {
 import {TableElement} from './ListTableElement';
 import {root} from '../axios/config';
 
+/* ==========================
+ListTable
+해당 컴포넌트에서 ListTableElement를 이용하여,
+List를 만듭니다. List에는 사진과 동영상의 제목이 있습니다.
+========================== */
+
 export const ListTable = ({
   title,
   info,

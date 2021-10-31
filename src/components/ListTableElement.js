@@ -4,6 +4,11 @@ import {useNavigation} from '@react-navigation/native';
 import {TouchableView} from './TouchableView';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+/* ==========================
+TableElement
+List의 항목을 나타냅니다.
+========================== */
+
 export const TableElement = ({title, createDate, fileType}) => {
   const navigation = useNavigation();
 

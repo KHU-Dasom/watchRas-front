@@ -4,6 +4,12 @@ import {root} from './config';
 
 const URL = `${root}:8091/api/directory`;
 
+/* ==========================
+fileList.js
+이 부분에서, axios 통신을 이용하여,
+라즈베리 파이에 파일 리스트를 받아옵니다.
+========================== */
+
 const setFileType = (list, fileType) => {
   if (list.length == 0) return undefined;
   const result = list.map(item => {
