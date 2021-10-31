@@ -5,7 +5,7 @@ import {wifiName, wifiPassword} from '../axios/config';
 // setting - https://github.com/JuanSeBestia/react-native-wifi-reborn/pull/216
 
 export const disconnectWifi = async () => {
-  WifiManager.isRemoveWifiNetwork(wifiName);
+  await WifiManager.isRemoveWifiNetwork(wifiName);
   console.log('disconnect');
 };
 
@@ -23,11 +23,7 @@ export const connectWifi = async () => {
   );
   if (granted === PermissionsAndroid.RESULTS.GRANTED) {
     // You can now use react-native-wifi-reborn
-    await WifiManager.connectToProtectedSSID(
-      wifiName,
-      wifiPassword,
-      false,
-    ).then(
+    WifiManager.connectToProtectedSSID(wifiName, wifiPassword, false).then(
       () => {
         console.log('Connected successfully!');
       },

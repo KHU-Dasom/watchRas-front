@@ -47,24 +47,6 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
         </View>
       </Modal>
     <View style={[styles.view]}>
-      
-        {/* <TouchableView
-          onPress={navigation.canGoBack() ? goBack : null}
-          style={{
-            height: '100%',
-            justifyContent: 'center',
-          }}>
-          <Image
-            source={require('../assets/images/leftArrow.png')}
-            style={{
-              marginLeft: 10,
-              tintColor: navigation.canGoBack() ? '#191919' : 'white',
-              width: 20,
-              height: 20,
-              resizeMode: 'contain',
-            }}
-          />
-        </TouchableView> */}
         <TouchableView
           onPress={navigation.canGoBack() ? goBack : () => toggleModal(!modalVisible)}
           style={{

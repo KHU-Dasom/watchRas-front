@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {root} from './config';
 
-const URL = `${root}:8090`;
+const URL = `${root}:8090/METAFIGURE`;
 
 export const getFileInfo = async (directory = '', fileName, setState) => {
   await axios({

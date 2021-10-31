@@ -34,7 +34,7 @@ export const ListTable = ({
                 }}
                 resizeMode="contain"
                 source={{
-                  uri: `${root}:8090/Table/${profileImage[0].title}`,
+                  uri: `${root}:8090/METAFIGURE/Table/${profileImage[0].title}`,
                 }}
               />
             )}

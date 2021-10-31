@@ -15,7 +15,7 @@ import {root} from '../axios/config';
 export const ImageElement = ({title}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showImageViewer, setShowImageViewer] = useState(false);
-  const imageUrl = `${root}:8090/Contents/` + title;
+  const imageUrl = `${root}:8090/METAFIGURE/Contents/` + title;
   console.log(imageUrl);
   const images = [
     {

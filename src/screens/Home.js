@@ -21,8 +21,10 @@ const Home = () => {
   const [profileImage, setProfileImage] = useState();
 
   useEffect(() => {
-    toggleLoading(true);
     connectWifi();
+  }, []);
+  useEffect(() => {
+    toggleLoading(true);
 
     try {
       Promise.all([
@@ -35,10 +37,6 @@ const Home = () => {
     } catch (err) {
       console.log(err);
     }
-
-    return () => {
-      disconnectWifi();
-    };
   }, [refresh]);
   console.log(profileImage);
   console.log(vedioData);
@@ -46,9 +44,9 @@ const Home = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      {/* {isLoading && (
+      {isLoading && (
         <BallIndicator color="black" style={styles.indicatorStyle} />
-      )} */}
+      )}
       <StatusBar barStyle={'light-content'} />
       <NavigationHeader title={'HOME'} />
       <TouchableView
