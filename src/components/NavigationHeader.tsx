@@ -27,34 +27,62 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
   const navigation = useNavigation();
 
   const goBack = useCallback(() => navigation.goBack(), [navigation]);
-  const goExit = useCallback(() => {disconnectWifi(); BackHandler.exitApp();} , [navigation])
+  const goExit = useCallback(() => {
+    BackHandler.exitApp();
+  }, [navigation]);
+  // const goExit = useCallback(() => {disconnectWifi(); BackHandler.exitApp();} , [navigation]) // 와이파이 자동 종료
   const [modalVisible, toggleModal] = useState(false);
 
   return (
     <>
-    <Modal
-      visible={modalVisible}
-      transparent
-      onRequestClose={() => toggleModal(!modalVisible)}
-      >
+      <Modal
+        visible={modalVisible}
+        transparent
+        onRequestClose={() => toggleModal(!modalVisible)}>
         <View style={styles.centerView}>
           <View style={styles.modal}>
-            <Text style={{fontSize: 20}}>정말로 종료 하시겠습니까?</Text>
+            <Text style={{fontSize: 20, color: 'black'}}>
+              정말로 종료 하시겠습니까?
+            </Text>
             <View style={{flexDirection: 'row', marginTop: 30}}>
-            <TouchableView style={{flex: 5, justifyContent: 'center', backgroundColor: '#354cd9', height: 35, borderRadius: 8}} onPress={() => goExit()}>
-            <Text style={{textAlign: 'center', fontSize: 18,  color: 'white'}}>확인</Text>
-            </TouchableView>
-            <View style={{flex: 1}}/>
-            <TouchableView style={{flex: 5, justifyContent: 'center', backgroundColor: '#f6f6f6', height: 35, borderRadius: 8}} onPress={() => toggleModal(!modalVisible)}>
-              <Text style={{textAlign: 'center', fontSize: 18, color: 'black'}}>취소</Text>
-            </TouchableView>
+              <TouchableView
+                style={{
+                  flex: 5,
+                  justifyContent: 'center',
+                  backgroundColor: '#354cd9',
+                  height: 35,
+                  borderRadius: 8,
+                }}
+                onPress={() => goExit()}>
+                <Text
+                  style={{textAlign: 'center', fontSize: 18, color: 'white'}}>
+                  확인
+                </Text>
+              </TouchableView>
+              <View style={{flex: 1}} />
+              <TouchableView
+                style={{
+                  flex: 5,
+                  justifyContent: 'center',
+                  backgroundColor: '#f6f6f6',
+                  height: 35,
+                  borderRadius: 8,
+                }}
+                onPress={() => toggleModal(!modalVisible)}>
+                <Text
+                  style={{textAlign: 'center', fontSize: 18, color: 'black'}}>
+                  취소
+                </Text>
+              </TouchableView>
             </View>
           </View>
         </View>
       </Modal>
-    <View style={[styles.view]}>
+      <View style={[styles.view]}>
         <TouchableView
-          onPress={navigation.canGoBack() ? goBack : () => toggleModal(!modalVisible)}
+          onPress={
+            navigation.canGoBack() ? goBack : () => toggleModal(!modalVisible)
+          }
           style={{
             height: '100%',
             justifyContent: 'center',
@@ -70,37 +98,38 @@ export const NavigationHeader: FC<NavigationHeaderProps> = ({
             }}
           />
         </TouchableView>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          flex: 1,
-          alignItems: 'center',
-          height: '100%',
-        }}>
-        <Text numberOfLines={1} style={[styles.title, titleStyle]}>
-          {title}
-        </Text>
-      </View>
-      <TouchableView
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            flex: 1,
+            alignItems: 'center',
+            height: '100%',
+          }}>
+          <Text numberOfLines={1} style={[styles.title, titleStyle]}>
+            {title}
+          </Text>
+        </View>
+        <TouchableView
           style={{
             height: '100%',
             justifyContent: 'center',
             width: 40,
           }}
-          onPress={() => {null}}
-        >
+          onPress={() => {
+            null;
+          }}>
           <Image
             source={require('../assets/images/refresh.png')}
             style={{
               width: 20,
               height: 20,
               resizeMode: 'contain',
-              tintColor: 'white'
+              tintColor: 'white',
             }}
           />
         </TouchableView>
-    </View>
+      </View>
     </>
   );
 };

@@ -19,7 +19,7 @@ export const Selector = ({selector, setSelector}) => {
             styles.selectorTextStyle,
             {color: selector === 'Contents' ? '#354cd9' : '#d9d9d9'},
           ]}>
-          영상
+          컨텐츠
         </Text>
       </TouchableView>
       <TouchableView

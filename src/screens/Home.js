@@ -27,7 +27,7 @@ const Home = () => {
   const [profileImage, setProfileImage] = useState();
 
   useEffect(() => {
-    connectWifi();
+    // connectWifi();  // 와이파이 자동연결
   }, []);
   useEffect(() => {
     toggleLoading(true);
@@ -47,7 +47,7 @@ const Home = () => {
   console.log(profileImage);
   console.log(vedioData);
   console.log(pictureData);
-
+  console.log(info);
   return (
     <SafeAreaView style={{flex: 1}}>
       {isLoading && (

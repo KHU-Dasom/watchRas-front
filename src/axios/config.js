@@ -10,5 +10,5 @@ Movie.js -  const videoPath = `${root}:8090/METAFIGURE/Contents/` + title;
 ========================== */
 
 export const root = 'http://192.168.2.1'; // 라즈베리파이 주소
-export const wifiName = 'choi'; // 와이파이 이름
-export const wifiPassword = 'choichoi'; // 와이파이 비밀번호
+export const wifiName = 'CHM-AI'; // 와이파이 이름
+export const wifiPassword = 'chmai123'; // 와이파이 비밀번호
