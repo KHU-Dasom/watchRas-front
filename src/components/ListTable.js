@@ -26,34 +26,38 @@ export const ListTable = ({
 }) => {
   return (
     <FlatList
-      ListHeaderComponent={
-        <View
-          style={{
-            flexDirection: 'row',
-          }}>
-          <View style={styles.figureOuterViewStyle}>
-            {profileImage == undefined ? null : (
-              <Image
-                style={{
-                  width: Dimensions.get('window').width * (1 / 2),
-                  height: Dimensions.get('window').width * (9 / 16),
-                }}
-                resizeMode="contain"
-                source={{
-                  uri: `${root}:8090/METAFIGURE/Table/${profileImage[0].title}`,
-                }}
-              />
-            )}
+      ListHeaderComponent={() => {
+        return (
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <View style={styles.figureOuterViewStyle}>
+              {profileImage == undefined ? null : (
+                <Image
+                  style={{
+                    width: Dimensions.get('window').width * (1 / 2),
+                    height: Dimensions.get('window').width * (9 / 16),
+                  }}
+                  resizeMode="contain"
+                  source={{
+                    uri: `${root}:8090/METAFIGURE/Table/${profileImage[0].title}`,
+                  }}
+                />
+              )}
+            </View>
+            <View style={{flex: 1}}>
+              {/* <Text style={styles.figureTitleStyle}>{title}</Text> */}
+              {info == undefined ? null : (
+                <Text style={styles.figureTitleStyle}>
+                  {info.split('\n')[0]}
+                </Text>
+              )}
+              <Text style={styles.figureTextStyle}>{info}</Text>
+            </View>
           </View>
-          <View style={{flex: 1}}>
-            {/* <Text style={styles.figureTitleStyle}>{title}</Text> */}
-            {info == undefined ? null : (
-              <Text style={styles.figureTitleStyle}>{info.split('\n')[0]}</Text>
-            )}
-            <Text style={styles.figureTextStyle}>{info}</Text>
-          </View>
-        </View>
-      }
+        );
+      }}
       data={selector == 'Contents' ? vedioData : pictureData}
       renderItem={({item, index}) =>
         item == null ? null : (
