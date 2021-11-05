@@ -12,6 +12,7 @@ fileInfo.js
 export const getFileInfo = async (directory = '', fileName, setState) => {
   await axios({
     method: 'get',
+    headers: {'Cache-Control': 'no-cache'},
     url: `${URL}/${directory}/${fileName}`,
   }).then(res => {
     // console.log(res.data);

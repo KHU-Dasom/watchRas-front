@@ -45,6 +45,7 @@ const setFileTypeAuto = (list, fileType) => {
 export const getFileList = async (directory = '', setState, fileType) => {
   await axios({
     method: 'get',
+    headers: {'Cache-Control': 'no-cache'},
     url: `${URL}/${directory}`,
   })
     .then(res => {
@@ -57,6 +58,7 @@ export const getFileList = async (directory = '', setState, fileType) => {
 export const getFileListAuto = async (directory = '', setState, fileType) => {
   await axios({
     method: 'get',
+    headers: {'Cache-Control': 'no-cache'},
     url: `${URL}/${directory}`,
   })
     .then(res => {

@@ -24,7 +24,7 @@ export const ListTable = ({
   selector,
   profileImage,
 }) => {
-  const headerComponent = useCallback(() => {
+  const HeaderComponent = useCallback(() => {
     return (
       <View
         style={{
@@ -55,20 +55,23 @@ export const ListTable = ({
     );
   }, [profileImage, info]);
   return (
-    <FlatList
-      ListHeaderComponent={headerComponent}
-      data={selector == 'Contents' ? vedioData : pictureData}
-      renderItem={({item, index}) =>
-        item == null ? null : (
-          <TableElement
-            title={item.title}
-            createDate={item.createDate}
-            fileType={item.fileType}
-            key={index}
-          />
-        )
-      }
-    />
+    <>
+      <HeaderComponent />
+      <FlatList
+        // ListHeaderComponent={HeaderComponent}
+        data={selector == 'Contents' ? vedioData : pictureData}
+        renderItem={({item, index}) =>
+          item == null ? null : (
+            <TableElement
+              title={item.title}
+              createDate={item.createDate}
+              fileType={item.fileType}
+              key={index}
+            />
+          )
+        }
+      />
+    </>
   );
 };
 
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width * (9 / 16),
   },
   figureTitleStyle: {
-    flex: 1,
+    flex: 2,
     fontSize: 16,
     fontWeight: 'bold',
     color: 'black',
