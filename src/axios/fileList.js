@@ -30,9 +30,13 @@ const setFileTypeAuto = (list, fileType) => {
 
     const pictureAry = ['png', 'jpg', 'jpeg', 'bmp'];
 
-    if (fileExt.trim() in pictureAry) {
-      itemFileType = 'picture';
-    } else itemFileType = 'video';
+    for (var type in pictureAry) {
+      if (fileExt === pictureAry[type]) {
+        itemFileType = 'picture';
+        break;
+      }
+      itemFileType = 'video';
+    }
 
     if (itemFileType === fileType) {
       return {fileType: fileType, title: item};

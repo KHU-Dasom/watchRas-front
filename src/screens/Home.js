@@ -50,9 +50,9 @@ const Home = () => {
   console.log(info);
   return (
     <SafeAreaView style={{flex: 1}}>
-      {isLoading && (
+      {/* {isLoading && (
         <BallIndicator color="black" style={styles.indicatorStyle} />
-      )}
+      )} */}
       <StatusBar barStyle={'light-content'} />
       <NavigationHeader title={'HOME'} />
       <TouchableView
