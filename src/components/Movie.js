@@ -20,9 +20,9 @@ Movie
 Detail Screen에서 영상을 보여줍니다.
 ========================== */
 
-export const MovieElement = ({title}) => {
+export const MovieElement = ({title, targetDir}) => {
   const videoRef = React.createRef();
-  const videoPath = `${root}:8090/METAFIGURE/Contents/` + title; // 추후 폴더 구조 변경시 이미지 파일이 위치한 곳으로 변경해주어야 합니다.
+  const videoPath = `${root}:8090/${targetDir}/Contents/` + title; // 추후 폴더 구조 변경시 이미지 파일이 위치한 곳으로 변경해주어야 합니다.
 
   const [state, setState] = useState({
     fullscreen: false,

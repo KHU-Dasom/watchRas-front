@@ -20,6 +20,7 @@ const Detail = () => {
   const title = route.params.title;
   const createDate = route.params.createDate;
   const fileType = route.params.fileType;
+  const targetDir = route.params.targetDir;
 
   return (
     <>
@@ -31,10 +32,10 @@ const Detail = () => {
       </View> */}
       <View style={{margin: 10, backgroundColor: '#dbdbdb', height: 1}} />
       {fileType === 'video' ? (
-        <MovieElement title={title} />
+        <MovieElement title={title} targetDir={targetDir} />
       ) : (
         <ScrollView contentContainerStyle={{flexGrow: 1}}>
-          <ImageElement title={title} />
+          <ImageElement title={title} targetDir={targetDir} />
         </ScrollView>
       )}
     </>

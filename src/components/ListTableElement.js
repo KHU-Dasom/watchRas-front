@@ -9,7 +9,7 @@ TableElement
 List의 항목을 나타냅니다.
 ========================== */
 
-export const TableElement = ({title, createDate, fileType}) => {
+export const TableElement = ({title, createDate, fileType, targetDir}) => {
   const navigation = useNavigation();
 
   const goDetail = useCallback(
@@ -18,8 +18,9 @@ export const TableElement = ({title, createDate, fileType}) => {
         title: title,
         createDate: createDate,
         fileType: fileType,
+        targetDir: targetDir,
       }),
-    [title, createDate, fileType],
+    [title, createDate, fileType, targetDir],
   );
 
   return (

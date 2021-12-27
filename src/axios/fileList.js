@@ -71,3 +71,16 @@ export const getFileListAuto = async (directory = '', setState, fileType) => {
     })
     .catch(console.error);
 };
+
+export const getFileListDir = async setTargetDir => {
+  await axios({
+    method: 'get',
+    headers: {'Cache-Control': 'no-cache'},
+    url: `${URL}`,
+  })
+    .then(res => {
+      console.log(res.data.data.target_dir);
+      setTargetDir(res.data.data.target_dir);
+    })
+    .catch(console.error);
+};

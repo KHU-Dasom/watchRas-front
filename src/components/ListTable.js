@@ -23,6 +23,7 @@ export const ListTable = ({
   pictureData,
   selector,
   profileImage,
+  targetDir,
 }) => {
   const HeaderComponent = useCallback(() => {
     return (

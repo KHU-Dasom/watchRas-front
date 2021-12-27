@@ -12,5 +12,7 @@ fileInfo.js - const URL = `${root}:8090/METAFIGURE`;
 ========================== */
 
 export const root = 'http://192.168.2.1'; // 라즈베리파이 주소
+// export const root = 'http://163.180.117.39'; // 테스트용 주소
+
 export const wifiName = 'CHM-AI'; // 와이파이 이름
 export const wifiPassword = 'chmai123'; // 와이파이 비밀번호

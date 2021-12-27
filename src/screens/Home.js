@@ -3,7 +3,7 @@ import {NavigationHeader} from '../components/NavigationHeader';
 import {Selector} from '../components/Selector';
 import {ListTable} from '../components/ListTable';
 import {SafeAreaView, StatusBar, StyleSheet, Image} from 'react-native';
-import {getFileList} from '../axios/fileList';
+import {getFileList, getFileListDir} from '../axios/fileList';
 import {getFileListAuto} from '../axios/fileList';
 import {getFileInfo} from '../axios/fileInfo';
 import {TouchableView} from '../components/TouchableView';
@@ -26,6 +26,8 @@ const Home = () => {
   const [refresh, toggleRefresh] = useState(false);
   const [profileImage, setProfileImage] = useState();
 
+  const [targetDir, setTargetDir] = useState('METAFIGURE');
+
   useEffect(() => {
     // connectWifi();  // 와이파이 자동연결
   }, []);
@@ -34,15 +36,17 @@ const Home = () => {
 
     try {
       Promise.all([
+        getFileListDir(setTargetDir),
         getFileListAuto('Contents', setVedioData, 'video'),
         getFileListAuto('Contents', setPictureData, 'picture'),
         // getFileInfo('Table', setTitle),
-        getFileInfo('Keyword', 'Keyword.txt', setInfo),
+        getFileInfo('Keyword', 'Keyword.txt', setInfo, targetDir),
         getFileList('Table', setProfileImage, 'picture'),
       ]).then(() => toggleLoading(false));
     } catch (err) {
       console.log(err);
     }
+    console.log(targetDir);
   }, [refresh]);
   console.log(profileImage);
   console.log(vedioData);
@@ -73,6 +77,7 @@ const Home = () => {
         vedioData={vedioData}
         pictureData={pictureData}
         selector={selector}
+        targetDir={targetDir}
       />
     </SafeAreaView>
   );
