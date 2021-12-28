@@ -40,7 +40,7 @@ export const ListTable = ({
               }}
               resizeMode="contain"
               source={{
-                uri: `${root}:8090/METAFIGURE/Table/${profileImage[0].title}`,
+                uri: `${root}:8090/${targetDir}/Table/${profileImage[0].title}`,
               }}
             />
           )}
@@ -68,6 +68,7 @@ export const ListTable = ({
               createDate={item.createDate}
               fileType={item.fileType}
               key={index}
+              targetDir={targetDir}
             />
           )
         }

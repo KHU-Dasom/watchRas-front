@@ -33,7 +33,6 @@ const Home = () => {
   }, []);
   useEffect(() => {
     toggleLoading(true);
-
     try {
       Promise.all([
         getFileListDir(setTargetDir),
@@ -48,6 +47,11 @@ const Home = () => {
     }
     console.log(targetDir);
   }, [refresh]);
+
+  useEffect(() => {
+    Promise.all([getFileInfo('Keyword', 'Keyword.txt', setInfo, targetDir)]);
+  }, [targetDir]);
+
   console.log(profileImage);
   console.log(vedioData);
   console.log(pictureData);
